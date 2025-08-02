@@ -316,18 +316,18 @@ body, .hero-box, .hero-box * {
       margin-top: 1rem;
     }
     .hero-box__main-text{
-      left: 6%;
-      top: 50%;
+      left: 4%;
+      top: 70%;
     }
 
     .hero-box__main-text span {
-      font-size: 8vw;
+      font-size: 8.5vw;
     }
     .hero-box__main-text span:nth-child(2) {
-      margin-left: 13vw;
+      margin-left: 14vw;
     }
     .hero-box__main-text span:nth-child(3) {
-      margin-left: 34vw;
+      margin-left: 36vw;
     }
   }
 
