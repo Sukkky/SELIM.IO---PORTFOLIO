@@ -489,6 +489,52 @@
   color: #00fff7;
 }
 
+/* Success message styling */
+.contact-success {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0,255,247,0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(0,255,247,0.2);
+}
+
+.success-icon {
+  font-size: 3rem;
+  color: #2dffb6;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.contact-success h4 {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.01em;
+}
+
+.contact-success p {
+  color: #7de2ff;
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Validation error styling */
+.validation-error {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  font-weight: 500;
+  display: block;
+  padding: 0.3rem 0;
+}
+
+.validation-error::before {
+  content: '⚠ ';
+  margin-right: 0.2rem;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .contact-content {

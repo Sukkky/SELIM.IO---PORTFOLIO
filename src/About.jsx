@@ -36,7 +36,7 @@ const About = () => {
                   <span className="stat-label">Years Experience</span>
                 </div>
                 <div className="stat-item">
-                  <span className="stat-number">50+</span>
+                  <span className="stat-number">Multiple</span>
                   <span className="stat-label">Projects Completed</span>
                 </div>
                 <div className="stat-item">
@@ -75,18 +75,6 @@ const About = () => {
                         <p>Creating robust server-side solutions and APIs that power modern web applications.</p>
                       </div>
                     </div>
-                    
-                    <div className="expertise-item">
-                      <div className="expertise-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
-                      </div>
-                      <div className="expertise-content">
-                        <h6>UI/UX Design</h6>
-                        <p>Designing intuitive user experiences with focus on accessibility and user-centered design.</p>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 
@@ -97,12 +85,11 @@ const About = () => {
                       <span className="category-label">Frontend</span>
                       <div className="skill-tags">
                         <span className="skill-tag">React</span>
-                        <span className="skill-tag">Vue.js</span>
                         <span className="skill-tag">JavaScript</span>
                         <span className="skill-tag">TypeScript</span>
                         <span className="skill-tag">HTML5</span>
                         <span className="skill-tag">CSS3</span>
-                        <span className="skill-tag">Sass</span>
+                        <span className="skill-tag">Tailwind CSS</span>
                       </div>
                     </div>
                     
@@ -124,9 +111,6 @@ const About = () => {
                         <span className="skill-tag">Git</span>
                         <span className="skill-tag">Docker</span>
                         <span className="skill-tag">AWS</span>
-                        <span className="skill-tag">Figma</span>
-                        <span className="skill-tag">Jest</span>
-                        <span className="skill-tag">Webpack</span>
                       </div>
                     </div>
                   </div>

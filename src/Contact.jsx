@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import './Contact.css';
 
 // Add Font Awesome CDN link to index.html or import here
 const SOCIALS = [
-  { name: 'LinkedIn', url: 'https://linkedin.com/', icon: 'fab fa-linkedin-in' },
-  { name: 'GitHub', url: 'https://github.com/', icon: 'fab fa-github' },
-  { name: 'Twitter', url: 'https://twitter.com/', icon: 'fab fa-twitter' },
-  { name: 'Email', url: 'mailto:youremail@example.com', icon: 'fas fa-envelope' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/selim-majekodunmi-700028264?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', icon: 'fab fa-linkedin-in' },
+  { name: 'GitHub', url: 'https://github.com/Sukkky', icon: 'fab fa-github' },
+  { name: 'Email', url: 'mailto:majekodunselim@gmail.com', icon: 'fas fa-envelope' },
 ];
 
 const ICONS = {
@@ -16,19 +16,22 @@ const ICONS = {
 };
 
 const Contact = () => {
+  const [state, handleSubmit] = useForm("xdkdpzgj");
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setForm({ name: '', email: '', message: '' });
-  };
+  // Reset form after successful submission
+  React.useEffect(() => {
+    if (state.succeeded) {
+      setForm({ name: '', email: '', message: '' });
+      setTimeout(() => {
+        // Reset the form state after showing success message
+      }, 3000);
+    }
+  }, [state.succeeded]);
 
   return (
     <section className="contact-section" id="contact">
@@ -95,62 +98,99 @@ const Contact = () => {
                 <p>Tell me about your project and I'll get back to you soon.</p>
               </div>
               
-              <form className="contact-form" onSubmit={handleSubmit} autoComplete="off">
-                <div className="form-row">
+              {state.succeeded ? (
+                <div className="contact-success">
+                  <div className="success-icon">✓</div>
+                  <h4>Message Sent Successfully!</h4>
+                  <p>Thank you for reaching out. I'll get back to you soon!</p>
+                </div>
+              ) : (
+                <form 
+                  className="contact-form" 
+                  onSubmit={handleSubmit} 
+                  autoComplete="off"
+                >
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="name">Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={form.name}
+                        onChange={handleChange}
+                        required
+                        className="contact-input"
+                        disabled={state.submitting}
+                      />
+                      <ValidationError 
+                        prefix="Name" 
+                        field="name"
+                        errors={state.errors}
+                        className="validation-error"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
+                        className="contact-input"
+                        disabled={state.submitting}
+                      />
+                      <ValidationError 
+                        prefix="Email" 
+                        field="email"
+                        errors={state.errors}
+                        className="validation-error"
+                      />
+                    </div>
+                  </div>
+                  
                   <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={form.name}
+                    <label htmlFor="message">Message</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={form.message}
                       onChange={handleChange}
                       required
-                      className="contact-input"
+                      className="contact-textarea"
+                      rows={6}
+                      placeholder="Tell me about your project..."
+                      disabled={state.submitting}
+                    />
+                    <ValidationError 
+                      prefix="Message" 
+                      field="message"
+                      errors={state.errors}
+                      className="validation-error"
                     />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      className="contact-input"
-                    />
-                  </div>
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                    className="contact-textarea"
-                    rows={6}
-                    placeholder="Tell me about your project..."
-                  />
-                </div>
-                
-                <button type="submit" className="contact-submit-btn">
-                  {submitted ? (
-                    <>
-                      <span className="submit-icon">✓</span>
-                      Message Sent!
-                    </>
-                  ) : (
-                    <>
-                      <span className="submit-icon">→</span>
-                      Send Message
-                    </>
-                  )}
-                </button>
-              </form>
+                  
+                  <button 
+                    type="submit" 
+                    className="contact-submit-btn"
+                    disabled={state.submitting}
+                  >
+                    {state.submitting ? (
+                      <>
+                        <span className="submit-icon">⏳</span>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <span className="submit-icon">→</span>
+                        Send Message
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
